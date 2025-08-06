@@ -15,5 +15,5 @@ public class User
     public string Email { get; set; }
 
     [Required]
-    public string PasswordHash { get; set; }  // Store hashed password, never store plain text
+    public string PasswordHash { get; set; }
 }
