@@ -1,0 +1,60 @@
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    .full-screen-center {
+        height: 100vh;                /* Full viewport height */
+        display: flex;
+        justify-content: center;      /* Horizontal center */
+        align-items: center;          /* Vertical center */
+        padding: 20px;
+        background-color: #f8f9fa;    /* Optional: light background */
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 400px;             /* Reduce width */
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    }
+</style>
+
+<div class="full-screen-center">
+    <div class="form-container">
+        <h2 class="text-center mb-4">Login</h2>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+
+        <form method="post" novalidate>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+
+        <div class="mt-3 text-center"></div>
+            Don't have an account? 
+            <a asp-controller="Account" asp-action="Register">Register here</a>.
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
