@@ -1,0 +1,98 @@
+@{
+    ViewData["Title"] = "Dashboard";
+    var userEmail = ViewBag.UserEmail as string;
+    var fullName = ViewBag.FullName as string;
+    var userId = ViewBag.UserId as string;
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3">Welcome, @fullName!</h2>
+    <p class="text-muted">Email: @userEmail</p>
+
+    <!-- Action Buttons -->
+    <div class="mb-4">
+        <a href="@Url.Action("AddExpense", "Expenses")" class="btn btn-danger me-2">
+            <i class="bi bi-dash-circle"></i> Add Expense
+        </a>
+        <a href="@Url.Action("AddIncome", "Income")" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Add Income
+        </a>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-danger shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Expenses</h5>
+                    <h3>UGX 1,250,000</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Income</h5>
+                    <h3>UGX 3,500,000</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-primary shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Current Balance</h5>
+                    <h3>UGX 2,250,000</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Transactions Section -->
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Recent Transactions</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Type</th>
+                        <th>Amount (UGX)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025-08-01</td>
+                        <td>Groceries</td>
+                        <td>Food</td>
+                        <td><span class="badge bg-danger">Expense</span></td>
+                        <td>-1,250,000</td>
+                    </tr>
+                    <tr>
+                        <td>2025-08-02</td>
+                        <td>Salary</td>
+                        <td>Income</td>
+                        <td><span class="badge bg-success">Income</span></td>
+                        <td>+3,500,000</td>
+                    </tr>
+                    <tr>
+                        <td>2025-08-03</td>
+                        <td>Electricity Bill</td>
+                        <td>Utilities</td>
+                        <td><span class="badge bg-danger">Expense</span></td>
+                        <td>-450,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Logout Button -->
+    <form asp-controller="Account" asp-action="Logout" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-outline-danger">Logout</button>
+    </form>
+</div>
