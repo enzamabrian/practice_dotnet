@@ -1,13 +1,20 @@
+@model WelcomeApp.Models.DashboardViewModel
+
 @{
     ViewData["Title"] = "Dashboard";
-    var userEmail = ViewBag.UserEmail as string;
-    var fullName = ViewBag.FullName as string;
-    var userId = ViewBag.UserId as string;
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 }
 
 <div class="container mt-4">
-    <h2 class="mb-3">Welcome, @fullName!</h2>
-    <p class="text-muted">Email: @userEmail</p>
+    <h2 class="mb-3">Welcome, @Model.FullName!</h2>
+    <p class="text-muted">Email: @Model.UserEmail</p>
 
     <!-- Action Buttons -->
     <div class="mb-4">
@@ -25,7 +32,7 @@
             <div class="card text-white bg-danger shadow">
                 <div class="card-body">
                     <h5 class="card-title">Total Expenses</h5>
-                    <h3>UGX 1,250,000</h3>
+                    <h3>UGX 1,250,000</h3>  <!-- Replace with dynamic total when ready -->
                 </div>
             </div>
         </div>
@@ -33,7 +40,7 @@
             <div class="card text-white bg-success shadow">
                 <div class="card-body">
                     <h5 class="card-title">Total Income</h5>
-                    <h3>UGX 3,500,000</h3>
+                    <h3>UGX 3,500,000</h3>  <!-- Replace with dynamic total when ready -->
                 </div>
             </div>
         </div>
@@ -41,7 +48,7 @@
             <div class="card text-white bg-primary shadow">
                 <div class="card-body">
                     <h5 class="card-title">Current Balance</h5>
-                    <h3>UGX 2,250,000</h3>
+                    <h3>UGX 2,250,000</h3>  <!-- Replace with dynamic balance when ready -->
                 </div>
             </div>
         </div>

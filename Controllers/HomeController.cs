@@ -26,18 +26,19 @@ public class HomeController : Controller
 
     // Protected dashboard (requires login)
     [Authorize]
+    [Authorize]
     public IActionResult Dashboard()
     {
-        var userEmail = User.Identity?.Name;
-        var userId = User.FindFirst("UserId")?.Value;
-        var fullName = User.FindFirst("FullName")?.Value;
+        var model = new DashboardViewModel
+        {
+            UserEmail = User.Identity?.Name,
+            UserId = User.FindFirst("UserId")?.Value,
+            FullName = User.FindFirst("FullName")?.Value
+        };
 
-        ViewBag.UserEmail = userEmail;
-        ViewBag.UserId = userId;
-        ViewBag.FullName = fullName;
-
-        return View();
+        return View(model);
     }
+
 
     // Optional: error page
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
